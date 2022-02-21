@@ -10,7 +10,7 @@ import java.net.Socket;
 public class SimpleSocket {
     @Test
     public void simpleSocket() throws IOException {
-     Socket socket = new Socket("java-course.ru",80);
+     Socket socket = new Socket("localhost",1000);
         InputStream inputStream = socket.getInputStream();
         OutputStream outputStream = socket.getOutputStream();
         String command = "GET /sitemap.xml HTTP/1.1\r\nHost:java-course.ru\r\n\r\n";
@@ -21,6 +21,8 @@ public class SimpleSocket {
         while ( (c = inputStream.read()) != -1) {
             System.out.print((char)c);
         }
+        inputStream.close();
+        outputStream.close();
 
         socket.close();
 
