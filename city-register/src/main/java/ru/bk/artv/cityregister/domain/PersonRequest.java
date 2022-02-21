@@ -7,9 +7,10 @@ public class PersonRequest {
     private String givenName;
     private String patronymic;
     private LocalDate dateOfBirth;
+    private int streetCode;
     private String building;
     private String extension;
-    private String apartments;
+    private String apartment;
 
     public String getSurname() {
         return surname;
@@ -43,6 +44,14 @@ public class PersonRequest {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public int getStreetCode() {
+        return streetCode;
+    }
+
+    public void setStreetCode(int streetCode) {
+        this.streetCode = streetCode;
+    }
+
     public String getBuilding() {
         return building;
     }
@@ -59,12 +68,12 @@ public class PersonRequest {
         this.extension = extension;
     }
 
-    public String getApartments() {
-        return apartments;
+    public String getApartment() {
+        return apartment;
     }
 
-    public void setApartments(String apartments) {
-        this.apartments = apartments;
+    public void setApartment(String apartments) {
+        this.apartment = apartments;
     }
 
 
