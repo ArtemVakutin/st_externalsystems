@@ -1,11 +1,13 @@
 package ru.bk.artv.cityregister.domain;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
 public class PersonRequest {
     private String surname;
     private String givenName;
     private String patronymic;
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     private LocalDate dateOfBirth;
     private int streetCode;
     private String building;
@@ -76,6 +78,17 @@ public class PersonRequest {
         this.apartment = apartments;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "PersonRequest{" +
+                "surname='" + surname + '\'' +
+                ", givenName='" + givenName + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", streetCode=" + streetCode +
+                ", building='" + building + '\'' +
+                ", extension='" + extension + '\'' +
+                ", apartment='" + apartment + '\'' +
+                '}';
+    }
 }

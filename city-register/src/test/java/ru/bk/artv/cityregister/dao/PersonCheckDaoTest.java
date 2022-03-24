@@ -6,6 +6,7 @@ import ru.bk.artv.cityregister.domain.PersonRequest;
 import ru.bk.artv.cityregister.domain.PersonResponse;
 import ru.bk.artv.cityregister.exception.PersonCheckException;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import static org.junit.Assert.*;
@@ -13,7 +14,7 @@ import static org.junit.Assert.*;
 public class PersonCheckDaoTest {
 
     @Test
-    public void checkPerson() throws PersonCheckException {
+    public void checkPerson() throws PersonCheckException, SQLException {
         PersonRequest pr = new PersonRequest();
         pr.setSurname("Васильев");
         pr.setGivenName("Павел");
@@ -25,6 +26,7 @@ public class PersonCheckDaoTest {
         pr.setApartment("121");
 
         PersonCheckDao dao = new PersonCheckDao();
+        dao.setConnectionBuilder(new DirectConnectionBuilder());
         PersonResponse ps = dao.checkPerson(pr);
         assertTrue(ps.isRegistered());
         assertFalse(ps.isTemporal());
@@ -37,10 +39,12 @@ public class PersonCheckDaoTest {
         pr.setPatronymic("Петровна");
         pr.setDateOfBirth(LocalDate.of(1997, 8, 21));
         pr.setStreetCode(1);
-        pr.setBuilding("271");
-        pr.setApartment("4");
+        pr.setBuilding("10");
+        pr.setExtension("2");
+        pr.setApartment("121");
 
         PersonCheckDao dao = new PersonCheckDao();
+        dao.setConnectionBuilder(new DirectConnectionBuilder());
         PersonResponse ps = dao.checkPerson(pr);
         assertTrue(ps.isRegistered());
         assertFalse(ps.isTemporal());
